@@ -8,9 +8,10 @@ import Login from "./components/Login";
 const App = () => {
   return (
     <BrowserRouter>
-    <Login/>
+    
     <Routes>
-      <Route path="/:itemName" element={<Home/>} />
+      <Route path="/login" element={<Login/>}/>
+      <Route path="/:itemId" element={<Home/>} />
       <Route path="/" element={<Home/>} />
     </Routes>
   </BrowserRouter>

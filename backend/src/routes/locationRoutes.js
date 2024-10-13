@@ -3,7 +3,7 @@ const router = express.Router();
 const Locations = require('../models/locationModel');
 const buildLocationTree=require('../Controllers/locationController')
 
-router.get('/mainLocations', async (req, res) => {
+router.get('/main', async (req, res) => {
   try {
     const locations = await Locations.find({ parent_godown: null });
     res.json(locations);
@@ -13,7 +13,7 @@ router.get('/mainLocations', async (req, res) => {
   }
 });
 
-router.get('/sublocations/:id', async (req, res) => {
+router.get('/:id/sublocations', async (req, res) => {
   const locationId = req.params.id;
 
   try {

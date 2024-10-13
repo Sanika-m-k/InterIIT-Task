@@ -41,24 +41,26 @@ const ItemDetails = ({ selectedItem }) => {
 
           <div className="text-lg text-gray-900">
             <p className="mb-4">
-              <strong className="text-blue-950">Category:</strong>{" "}
+              <strong className="text-blue-950"></strong>
               {selectedItem.category}
             </p>
+
+            
             <p className="mb-4">
-              <strong className="text-blue-950">Price:</strong> ${selectedItem.price.toFixed(2)}
+              <div className="bg-white p-3 rounded-md shadow-md border border-gray-300 text-gray-800 text-center">${selectedItem.price.toFixed(2)}</div>
             </p>
             <p className="mb-4">
-              <strong className="text-blue-950">Quantity:</strong> {" "}
+              <strong className="text-blue-950"></strong>
               <span className="font-bold">
                 Only {selectedItem.quantity} items are available!
               </span>
             </p>
             <p className="mb-4">
-              <strong className="text-blue-950">Status:</strong>{" "}
+              <strong className="text-blue-950"></strong>
               <span
                 className={`${
                   isInStock ? "text-green-600" : "text-red-600"
-                } font-extrabold text-xl`}
+                } font-bold text-xl`}
               >
                 {isInStock ? "In Stock" : "Out of Stock"}
               </span>
