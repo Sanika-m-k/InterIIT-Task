@@ -37,7 +37,7 @@ const TreeNode = ({ node, onItemSelected, selectedItem }) => {
       }
     };
     fetchItems(); 
-  }, [node]);
+  }, );
 
   const handleItemClick = (item) => {
     onItemSelected(item); // Pass the selected item up to the parent component
