@@ -1,0 +1,51 @@
+/backend/node_modules
+/frontend/node_modules
+
+# Ignore build files for React app
+/frontend/build
+
+# Ignore environment variable files
+/backend/.env
+/frontend/.env
+
+# Ignore logs
+/logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Ignore temporary files or build outputs
+/backend/dist
+/backend/build
+/frontend/.next
+/frontend/out
+/backend/tmp
+/backend/cache
+
+# Ignore local environment files
+/.DS_Store
+/.env.local
+/.env.development.local
+/.env.test.local
+/.env.production.local
+
+# Ignore local Docker override file (used for development-specific configs)
+docker-compose.override.yml
+
+# Keep Docker files (Dockerfile, docker-compose.yml) that are important for running the app
+# Do not ignore:
+# Dockerfile
+# docker-compose.yml
+
+# Ignore OS generated files
+*.swp
+*.swo
+*.bak
+*.tmp
+
+# Ignore IDE and editor settings
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
