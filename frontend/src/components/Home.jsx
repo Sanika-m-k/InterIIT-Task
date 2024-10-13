@@ -7,22 +7,21 @@ import axios from "axios";
 import baseurl from "../config";
 
 const Home = () => {
-  const { item_Id } = useParams(); // Get item name from the URL
+  const { item_Id } = useParams(); 
   const [selectedItem, setSelectedItem] = useState(null);
   const [mainLocations, setMainLocations] = useState([]);
-  const navigate = useNavigate(); // For navigation after logout
+  const navigate = useNavigate(); 
 
-  // Fetch main locations on mount
   useEffect(() => {
   const fetchMainLocations = async () => {
     try {
-      const res = await axios.get(`${baseurl}/api/locations/main`); // API call for main locations
-      setMainLocations(res.data); // Store main locations
+      const res = await axios.get(`${baseurl}/api/locations/main`); 
+      setMainLocations(res.data); 
     } catch (error) {
       console.error("Error fetching main locations:", error);
     }
   };
-  fetchMainLocations(); // Fetch main locations when component mounts
+  fetchMainLocations(); 
 }, []);
   
   useEffect(async() => {
@@ -30,19 +29,20 @@ const Home = () => {
       const decodedItemId = decodeURIComponent(item_Id); 
       console.log("Decoded item name from URL:", decodedItemId);
       try {
-        const item = await axios.get(`${baseurl}/api/items/${item_Id}`); // API call for main locations
-        setSelectedItem(item.data); // Store main locations
+        const item = await axios.get(`${baseurl}/api/items/${item_Id}`); 
+        setSelectedItem(item.data); 
+        if (item) {
+          console.log("Item found:", item);
+          setSelectedItem(item);
+        } else {
+          console.log("Item not found");
+          setSelectedItem(null);
+        }
       } catch (error) {
         console.error("Error fetching item:", error);
       }
 
-      if (item) {
-        console.log("Item found:", item);
-        setSelectedItem(item);
-      } else {
-        console.log("Item not found");
-        setSelectedItem(null);
-      }
+      
     }
   }, [item_Id]);
 

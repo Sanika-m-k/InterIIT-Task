@@ -1,2 +1,2 @@
-const baseurl="http://locallhost:5000"
+const baseurl="https://interiit-task.onrender.com/"
 export default baseurl;
