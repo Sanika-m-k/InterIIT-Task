@@ -16,7 +16,7 @@ const TreeNode = ({ node, onItemSelected, selectedItem }) => {
       // If there are no sublocations and we are expanding, fetch sublocations
       try {
         setIsLoading(true);
-        const res = await axios.get(`${baseurl}/api/locations/sublocations/${node.id}`);
+        const res = await axios.get(`${baseurl}/api/locations/${node.id}/sublocations`);
         setSubLocations(res.data); // Set the fetched sublocations
         setIsLoading(false);
       } catch (error) {
