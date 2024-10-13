@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { FaChevronDown, FaChevronRight, FaFolder, FaFolderOpen, FaImage } from "react-icons/fa"; 
 import { Link } from "react-router-dom";
 import axios from "axios";
@@ -12,8 +12,8 @@ const TreeNode = ({ node, onItemSelected, selectedItem }) => {
   const toggleExpand = async () => {
     setIsExpanded(!isExpanded);
 
-    if (!subLocations.length && !isExpanded) {
-      // If there are no sublocations and we are expanding, fetch sublocations
+    if (!subLocations.length && !node.items?.length && !isExpanded) {
+      // Fetch sublocations only if sublocations and items are not available and we are expanding
       try {
         setIsLoading(true);
         const res = await axios.get(`${baseurl}/api/locations/${node.id}/sublocations`);
@@ -51,42 +51,45 @@ const TreeNode = ({ node, onItemSelected, selectedItem }) => {
 
       {isLoading && <p>Loading...</p>}
 
-      {isExpanded && subLocations && (
+      {/* Display sublocations or items if no sublocations are present */}
+      {isExpanded && (
         <div className="ml-4">
-          {subLocations.map((subNode, index) => (
-            <TreeNode
-              key={index}
-              node={subNode}
-              onItemSelected={onItemSelected}
-              selectedItem={selectedItem}
-            />
-          ))}
-        </div>
-      )}
-
-      {isExpanded && node.items && (
-        <div className="ml-6">
-          {node.items.map((item, index) => (
-            <div
-              key={index}
-              className={`flex items-center py-1 cursor-pointer ${
-                isSelected(item) ? "text-blue-500 font-bold" : "text-blue-950"
-              }`}
-              onClick={() => handleItemClick(item)}
-            >
-              <span className="mr-2">
-                <FaImage />
-              </span>
-              <Link
-                to={`/${item.item_id}`}
-                className={`hover:text-blue-500 flex items-center cursor-pointer ${
-                  isSelected(item) ? "text-blue-500 font-semibold" : "text-blue-950"
-                }`}
-              >
-                {item.name}
-              </Link>
+          {subLocations.length > 0 ? (
+            subLocations.map((subNode, index) => (
+              <TreeNode
+                key={index}
+                node={subNode}
+                onItemSelected={onItemSelected}
+                selectedItem={selectedItem}
+              />
+            ))
+          ) : node.items && node.items.length > 0 ? (
+            <div className="ml-6">
+              {node.items.map((item, index) => (
+                <div
+                  key={index}
+                  className={`flex items-center py-1 cursor-pointer ${
+                    isSelected(item) ? "text-blue-500 font-bold" : "text-blue-950"
+                  }`}
+                  onClick={() => handleItemClick(item)}
+                >
+                  <span className="mr-2">
+                    <FaImage />
+                  </span>
+                  <Link
+                    to={`/${item.item_id}`}
+                    className={`hover:text-blue-500 flex items-center cursor-pointer ${
+                      isSelected(item) ? "text-blue-500 font-semibold" : "text-blue-950"
+                    }`}
+                  >
+                    {item.name}
+                  </Link>
+                </div>
+              ))}
             </div>
-          ))}
+          ) : (
+            <p className="ml-4 text-gray-500">No items or sublocations available</p>
+          )}
         </div>
       )}
     </div>

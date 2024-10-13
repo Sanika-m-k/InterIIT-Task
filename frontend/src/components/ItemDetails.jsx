@@ -10,7 +10,6 @@ const ItemDetails = ({ selectedItem }) => {
   return (
     <>
       <div className="p-6 bg-blue-100 rounded-lg shadow-lg border border-blue-100 flex flex-wrap md:flex-nowrap">
-        {/* Left Side: Item Image */}
         <div className="w-full md:w-1/2 flex justify-center mb-4 md:mb-0">
           <a
             href={selectedItem.image_url}
