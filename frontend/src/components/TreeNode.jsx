@@ -77,7 +77,7 @@ const TreeNode = ({ node, onItemSelected, selectedItem }) => {
         </div>
       )}
 
-      {isExpanded && itemss (
+      {isExpanded && subLocations && itemss (
         <div className="ml-6">
           {itemss.map((item, index) => (
             <div
