@@ -24,7 +24,7 @@ const Home = () => {
   fetchMainLocations(); 
 }, []);
   
-  useEffect(async() => {
+  const getSelectedItemDetails=async() => {
     if (item_Id) {
       const decodedItemId = decodeURIComponent(item_Id); 
       console.log("Decoded item name from URL:", decodedItemId);
@@ -41,10 +41,11 @@ const Home = () => {
       } catch (error) {
         console.error("Error fetching item:", error);
       }
-
-      
     }
-  }, [item_Id]);
+  }
+  useEffect(()=>{
+    getSelectedItemDetails()
+  },[])
 
   const handleItemSelected = (item) => {
     setSelectedItem(item);
@@ -85,7 +86,7 @@ const Home = () => {
 
       <div
         onClick={handleLogout}
-        className="fixed bottom-4 right-4 cursor-pointer text-black hover:text-red-600 transition duration-300"
+        className="fixed bottom-4 right-4 cursor-pointer text-black hover:text-red-800 transition duration-300"
         title="Logout"
       >
         <FiLogOut size={30} />

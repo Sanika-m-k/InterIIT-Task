@@ -6,7 +6,7 @@ import baseurl from "../config";
 
 const TreeNode = ({ node, onItemSelected, selectedItem }) => {
   const [isExpanded, setIsExpanded] = useState(false);
-  const [subLocations, setSubLocations] = useState(node.subLocations || []); // Initially passed sublocations
+  const [subLocations, setSubLocations] = useState([node.subLocations||[]]); // Initially passed sublocations
   const [isLoading, setIsLoading] = useState(false);
   const[itemss,setitemss]=useState([])
 
@@ -27,7 +27,7 @@ const TreeNode = ({ node, onItemSelected, selectedItem }) => {
     }
   };
 
-  useEffect(() => {
+ 
     const fetchItems = async () => {
       try {
         const res = await axios.get(`${baseurl}/api/items/location/${node.id}`); 
@@ -37,7 +37,7 @@ const TreeNode = ({ node, onItemSelected, selectedItem }) => {
       }
     };
     fetchItems(); 
-  }, );
+
 
   const handleItemClick = (item) => {
     onItemSelected(item); // Pass the selected item up to the parent component
@@ -77,31 +77,7 @@ const TreeNode = ({ node, onItemSelected, selectedItem }) => {
         </div>
       )}
 
-      {isExpanded && subLocations && itemss (
-        <div className="ml-6">
-          {itemss.map((item, index) => (
-            <div
-              key={index}
-              className={`flex items-center py-1 cursor-pointer ${
-                isSelected(item) ? "text-blue-500 font-bold" : "text-blue-950"
-              }`}
-              onClick={() => handleItemClick(item)}
-            >
-              <span className="mr-2">
-                <FaImage />
-              </span>
-              <Link
-                to={`/${item.item_id}`}
-                className={`hover:text-blue-500 flex items-center cursor-pointer ${
-                  isSelected(item) ? "text-blue-500 font-semibold" : "text-blue-950"
-                }`}
-              >
-                {item.name}
-              </Link>
-            </div>
-          ))}
-        </div>
-      )}
+      
     </div>
   );
 };
