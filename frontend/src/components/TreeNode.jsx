@@ -30,14 +30,14 @@ const TreeNode = ({ node, onItemSelected, selectedItem }) => {
   useEffect(() => {
     const fetchItems = async () => {
       try {
-        const res = await axios.get(`${baseurl}/api/items/location/:godown_id`); 
+        const res = await axios.get(`${baseurl}/api/items/location/${node.id}`); 
         setitemss(res.data); 
       } catch (error) {
         console.error("Error fetching items:", error);
       }
     };
     fetchItems(); 
-  }, []);
+  }, [node]);
 
   const handleItemClick = (item) => {
     onItemSelected(item); // Pass the selected item up to the parent component
