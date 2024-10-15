@@ -41,8 +41,8 @@ const ItemDetails = ({ selectedItem }) => {
           </p>
 
           {/* Product Category */}
-          <div className="text-md text-blue-700 mb-6 md:text-left text-center flex items-center justify-center md:justify-start">
-            <FaBoxOpen className="text-blue-600 mr-2" />
+          <div className="text-md text-blue-900 mb-6 md:text-left text-center flex items-center justify-center md:justify-start">
+            <FaBoxOpen className="text-blue-900 mr-2" />
             <span>{selectedItem.category}</span>
           </div>
 
@@ -82,7 +82,7 @@ const ItemDetails = ({ selectedItem }) => {
 
           {/* Attributes Section */}
           <div className="mt-12">
-            <strong className="text-blue-800 text-lg block mb-2">Attributes:</strong>
+            <strong className="text-blue-900 text-lg block mb-2">Attributes:</strong>
             <ul className="list-disc list-inside text-blue-700">
               {selectedItem.attributes &&
                 Object.entries(selectedItem.attributes).map(([key, value]) => (

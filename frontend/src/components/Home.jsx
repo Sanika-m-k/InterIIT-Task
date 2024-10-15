@@ -8,9 +8,10 @@ import baseurl from "../config";
 
 
 const Home = () => {
-  const { itemId } = useParams(); // Use camelCase for URL param
+  const { itemId } = useParams(); 
   const [selectedItem, setSelectedItem] = useState(null);
   const [mainLocations, setMainLocations] = useState([]);
+  const [message,setMessage]=useState('')
   const navigate = useNavigate(); 
 
   useEffect(() => {
@@ -25,14 +26,25 @@ const Home = () => {
     fetchMainLocations(); 
   }, []);
 
+  const handleLogout = async () => {
+    try {
+      await axios.post(`${baseurl}/auth/logout`, {}, { withCredentials: true });
+      localStorage.removeItem('token'); 
+      setMessage('Logged out successfully');
+      navigate("/login"); 
+    } catch (error) {
+      setMessage('Error logging out. Please try again.');
+    }
+  };
+
   const getSelectedItemDetails = async () => {
     if (itemId) {
       try {
         const res = await axios.get(`${baseurl}/api/items/${itemId}`); 
-        setSelectedItem(res.data); // Correctly set the item data
+        setSelectedItem(res.data);
       } catch (error) {
         console.error("Error fetching item:", error);
-        setSelectedItem(null);  // Set to null if not found
+        setSelectedItem(null);  
       }
     }
   };
@@ -42,13 +54,9 @@ const Home = () => {
   }, [itemId]);
 
   const handleItemSelected = (item) => {
-    setSelectedItem(item); // Update the selected item
+    setSelectedItem(item); 
   };
 
-  const handleLogout = () => {
-    localStorage.removeItem("authToken");
-    navigate("/login");
-  };
 
   return (
     <div className="bg-blue-100 flex flex-col md:flex-row h-screen">

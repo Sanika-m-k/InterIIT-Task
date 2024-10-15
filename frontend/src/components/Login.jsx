@@ -19,13 +19,19 @@ function Login() {
       navigate("/");
       setMessage(response.data.message);
     } catch (error) {
-      setMessage(error.response.data.message); // Display error message
+      setMessage(error.response.data.message); 
     }
   };
 
   const handleLogout = async () => {
-    await axios.post(baseurl, {}, { withCredentials: true });
-    setMessage('Logged out successfully');
+    try {
+      await axios.post(`${baseurl}/auth/logout`, {}, { withCredentials: true });
+      localStorage.removeItem('token'); 
+      setMessage('Logged out successfully');
+      navigate("/login"); 
+    } catch (error) {
+      setMessage('Error logging out. Please try again.');
+    }
   };
 
   return (
