@@ -93,16 +93,16 @@ const Home = () => {
     <div className="flex justify-end items-center space-x-6">
         
         {/* Search Icon with Circle */}
-        <div className="relative flex items-center justify-center w-10 h-10 rounded-full border border-gray-300 hover:bg-blue-50 transition duration-300 cursor-pointer" >
-         {isLoggedIn?(<Link to={'/search'}><FaSearch className="text-gray-600" /></Link> ):(<Link to={'/login'}><FaSearch className="text-gray-600" /></Link> )}
-        </div>
+        
+         {isLoggedIn?(<Link to={'/search'}><div className="relative flex items-center justify-center w-10 h-10 rounded-full border border-gray-300 hover:bg-blue-50 transition duration-300 cursor-pointer" ><FaSearch className="text-gray-600" /></div></Link> ):(<Link to={'/login'}><div className="relative flex items-center justify-center w-10 h-10 rounded-full border border-gray-300 hover:bg-blue-50 transition duration-300 cursor-pointer" ><FaSearch className="text-gray-600" /></div></Link> )}
+        
 
         {/* Login Button */}
-        <div className="py-2 px-6 border border-gray-300 rounded-full hover:bg-blue-50 transition duration-300">
+        <div className="">
           {!isLoggedIn?<Link to='/login' className="flex items-center text-gray-700 font-medium">
-            Login
+           <div className="py-2 px-6 border border-gray-300 rounded-full hover:bg-blue-50 transition duration-300">Login</div> 
           </Link>:<Link onClick={handleLogout} className="flex items-center text-gray-700 font-medium">
-            Logout
+          <div className="py-2 px-6 border border-gray-300 rounded-full hover:bg-blue-50 transition duration-300">Logout</div> 
           </Link>}
         </div>
       </div>

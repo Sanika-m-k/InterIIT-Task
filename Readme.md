@@ -55,7 +55,7 @@ docker-compose up
 | ------------- | ------------- |
 | GET  | http://localhost:5000/api/items/location/:godown_id |
 | GET  | http://localhost:5000/api/items/:item_id |
-| GET  |  http://localhost:5000/api/locations/:id/sublocations|
-| GET  |  http://localhost:5000/api/locations/main|
-| GET  |  http://localhost:5000/api/search|
+| GET  |  http://localhost:5000/api/locations/:id/sublocations |
+| GET  |  http://localhost:5000/api/locations/main |
+| GET  |  http://localhost:5000/api/search |
 | POST  | http://localhost:5000/auth/login  |
