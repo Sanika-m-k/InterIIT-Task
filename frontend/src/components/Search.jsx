@@ -58,7 +58,7 @@ const Search = () => {
   const handleSearch = async () => {
     setLoading(true);
     try {
-      const response = await axios.get(`${baseurl}/search`, {
+      const response = await axios.get(`${baseurl}/api/search`, {
         params: {
           name: searchTerm,
           category,
