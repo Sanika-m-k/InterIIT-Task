@@ -1,2 +1,2 @@
-const baseurl="https://sanikaiit.online/"
+const baseurl="https://sanikaiit.online"
 export default baseurl;
