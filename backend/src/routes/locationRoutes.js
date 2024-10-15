@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
 const Locations = require('../models/locationModel');
-const buildLocationTree=require('../Controllers/locationController')
 
 router.get('/main', async (req, res) => {
   try {

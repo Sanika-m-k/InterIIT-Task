@@ -1,2 +1,0 @@
-const getSubLocations = require('./locationController')
-

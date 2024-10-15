@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 import Tree from "./Tree";
 import ItemDetails from "./ItemDetails";
 import { FiLogOut } from "react-icons/fi"; 
 import axios from "axios";
 import baseurl from "../config";
-
+import { FaSearch } from 'react-icons/fa'
 
 const Home = () => {
   const { itemId } = useParams(); 
@@ -37,6 +37,7 @@ const Home = () => {
     }
   };
 
+  
   const getSelectedItemDetails = async () => {
     if (itemId) {
       try {
@@ -79,6 +80,21 @@ const Home = () => {
     </div>
 
     <div className="md:w-3/4 w-300px p-4 bg-white">
+    <div className="flex justify-end items-center space-x-6">
+        
+        {/* Search Icon with Circle */}
+        <div className="relative flex items-center justify-center w-10 h-10 rounded-full border border-gray-300 hover:bg-blue-50 transition duration-300 cursor-pointer" >
+         <Link to={'/search'}><FaSearch className="text-gray-600" /></Link> 
+        </div>
+
+        {/* Login Button */}
+        <div className="py-2 px-6 border border-gray-300 rounded-full hover:bg-blue-50 transition duration-300">
+          <Link to='/login' className="flex items-center text-gray-700 font-medium">
+            Login
+          </Link>
+        </div>
+      </div>
+      
       {selectedItem ? (
         <ItemDetails selectedItem={selectedItem} />
       ) : (
