@@ -1,2 +1,2 @@
-const baseurl="https://interiit-task.onrender.com"
+const baseurl="https://sanikaiit.online"
 export default baseurl;

@@ -106,7 +106,7 @@ const Home = () => {
           </Link>}
         </div>
       </div>
-      
+      <></>
       {selectedItem ? (
         <ItemDetails selectedItem={selectedItem} />
       ) : (
