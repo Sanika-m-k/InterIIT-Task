@@ -1,2 +1,2 @@
-const baseurl="http://localhost:5000"
+const baseurl="https://sanikaiit.online/"
 export default baseurl;
