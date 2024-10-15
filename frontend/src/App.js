@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import { BrowserRouter , Route, Routes } from 'react-router-dom';
 import Home from "./components/Home";
-import ItemDetails from "./components/ItemDetails";
-import TreeNode from "./components/TreeNode";
 import Login from "./components/Login";
 
 const App = () => {
