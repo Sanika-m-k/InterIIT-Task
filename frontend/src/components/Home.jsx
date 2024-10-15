@@ -13,6 +13,16 @@ const Home = () => {
   const [mainLocations, setMainLocations] = useState([]);
   const [message,setMessage]=useState('')
   const navigate = useNavigate(); 
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    const token = localStorage.getItem('token'); 
+    if (token) {
+      setIsLoggedIn(true);
+    } else {
+      setIsLoggedIn(false);
+    }
+  }, []);
 
   useEffect(() => {
     const fetchMainLocations = async () => {
@@ -60,9 +70,9 @@ const Home = () => {
 
 
   return (
-    <div className="bg-blue-100 flex flex-col md:flex-row h-screen">
-    <div className="md:w-1/4 w-full border-b lg:border-b-0 lg:border-r border-blue-800 p-4 bg-blue-100 shadow-md md:overflow-y-scroll">
-      <h2 className="text-4xl text-center font-bold text-blue-900 mb-4">
+    <div className="bg-white flex flex-col md:flex-row h-screen">
+    <div className="md:w-1/4 w-full border-b lg:border-b-0 lg:border-r border-blue-800 p-4 bg-white shadow-md md:overflow-y-scroll">
+      <h2 className="text-4xl text-center font-bold text-black mb-4">
         Godown Inventory
       </h2>
       {mainLocations.length > 0 ? (
@@ -84,14 +94,16 @@ const Home = () => {
         
         {/* Search Icon with Circle */}
         <div className="relative flex items-center justify-center w-10 h-10 rounded-full border border-gray-300 hover:bg-blue-50 transition duration-300 cursor-pointer" >
-         <Link to={'/search'}><FaSearch className="text-gray-600" /></Link> 
+         {isLoggedIn?(<Link to={'/search'}><FaSearch className="text-gray-600" /></Link> ):(<Link to={'/login'}><FaSearch className="text-gray-600" /></Link> )}
         </div>
 
         {/* Login Button */}
         <div className="py-2 px-6 border border-gray-300 rounded-full hover:bg-blue-50 transition duration-300">
-          <Link to='/login' className="flex items-center text-gray-700 font-medium">
+          {!isLoggedIn?<Link to='/login' className="flex items-center text-gray-700 font-medium">
             Login
-          </Link>
+          </Link>:<Link onClick={handleLogout} className="flex items-center text-gray-700 font-medium">
+            Logout
+          </Link>}
         </div>
       </div>
       
@@ -102,15 +114,7 @@ const Home = () => {
       )}
     </div>
 
-    <div
-      onClick={handleLogout}
-      className="fixed bottom-4 right-4 cursor-pointer text-black hover:text-red-800 transition duration-300"
-      title="Logout"
-      role="button"
-      tabIndex="0"
-    >
-      <FiLogOut size={30} />
-    </div>
+   
   </div>
   );
 };

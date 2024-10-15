@@ -70,7 +70,7 @@ const Tree=(node,onItemSelected,selectedItem)=>{
     return(
         <>
             <div
-        className="flex items-center cursor-pointer p-2 rounded-md hover:bg-blue-200 transition duration-300 "
+        className="flex items-center cursor-pointer p-2 rounded-md hover:bg-gray-100 transition duration-300 "
         onClick={toggleExpand}
       >
         <span className="mr-2 text-blue-800">
@@ -106,7 +106,7 @@ const Tree=(node,onItemSelected,selectedItem)=>{
           {items.map((item, index) => (
             <div
               key={index}
-              className={`flex items-center py-1 cursor-pointer `}
+              className={`flex items-center py-1 cursor-pointer text-blue-950 `}
               onClick={handleItemClick}
             >
               <span className="mr-2">

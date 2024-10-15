@@ -51,9 +51,11 @@ const Search = () => {
   const [category, setCategory] = useState('');
   const [status, setStatus] = useState('');
   const [brand, setBrand] = useState('');
-  const [priceRange, setPriceRange] = useState([0, 1000]);
+  const [priceRange, setPriceRange] = useState([5, 500]);
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(false);
+
+
 
   const handleSearch = async () => {
     setLoading(true);
@@ -112,7 +114,11 @@ const Search = () => {
                 label="Category"
               >
                 <MenuItem value="">All</MenuItem>
-                <MenuItem value="Tools">Tools</MenuItem>
+                            <MenuItem value="Clothing">Clothing</MenuItem>
+                            <MenuItem value="Electronics">Electronics</MenuItem>
+                            <MenuItem value="Furniture">Furniture</MenuItem>
+                            <MenuItem value="Tools">Tools</MenuItem>
+                            <MenuItem value="Toys">Toys</MenuItem>
                 {/* Add more categories as needed */}
               </Select>
             </FormControl>
@@ -135,14 +141,20 @@ const Search = () => {
             <FormControl fullWidth variant="outlined">
               <InputLabel>Brand</InputLabel>
               <Select
-                value={brand}
-                onChange={(e) => setBrand(e.target.value)}
-                label="Brand"
-              >
-                <MenuItem value="">All</MenuItem>
-                <MenuItem value="Black & Decker">Black & Decker</MenuItem>
-                {/* Add more brands as needed */}
-              </Select>
+                            value={brand}
+                            onChange={(e) => setBrand(e.target.value)}
+                            label="Brand"
+                        >
+                            <MenuItem value="">All</MenuItem>
+                            {[
+                                'Adidas', 'Apple', 'Ashley', 'Black & Decker', 'Bosch', 'DeWalt',
+                                'Dell', 'Fisher-Price', 'H&M', 'HP', 'Hasbro', "Haverty's", 'Ikea',
+                                'LEGO', 'La-Z-Boy', "Levi's", 'Makita', 'Mattel', 'Nike', 'Playmobil',
+                                'Samsung', 'Sony', 'Stanley', 'Wayfair', 'Zara'
+                            ].map((brand) => (
+                                <MenuItem key={brand} value={brand}>{brand}</MenuItem>
+                            ))}
+                        </Select>
             </FormControl>
           </Grid>
           <Grid item xs={12} sm={6} md={3}>
@@ -151,8 +163,8 @@ const Search = () => {
               value={priceRange}
               onChange={(e, newValue) => setPriceRange(newValue)}
               valueLabelDisplay="auto"
-              min={0}
-              max={1000}
+              min={5}
+              max={500}
             />
           </Grid>
         </Grid>

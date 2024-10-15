@@ -3,99 +3,78 @@ import { FaTag, FaBoxes, FaBoxOpen, FaCheckCircle, FaTimesCircle, FaDollarSign }
 
 const ItemDetails = ({ selectedItem }) => {
   if (!selectedItem) {
-    return <div className="text-gray-500">Please select an item.</div>;
+    return <div className="text-gray-500 text-center p-8">Please select an item.</div>;
   }
 
   const isInStock = selectedItem.status === 'in_stock';
 
   return (
-    <>
-      <div className="p-6 bg-blue-200 rounded-md shadow-lg border border-blue-900 flex flex-wrap md:flex-nowrap">
-        <div className="w-full md:w-1/2 flex mr-6 justify-center mb-4 md:mb-0">
+    <div className="bg-gradient-to-br from-gray-100 to-gray-200 p-8 mt-10 rounded-lg shadow-xl">
+      <div className="flex flex-col lg:flex-row gap-8">
+        <div className="lg:w-1/2">
           <a
             href={selectedItem.image_url}
             target="_blank"
             rel="noopener noreferrer"
-            className="h-[550px] w-full md:w-auto relative rounded-md"
+            className="block aspect-square overflow-hidden rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300"
           >
             <img
               src={selectedItem.image_url}
               alt={selectedItem.name}
-              className="h-full w-full md:w-auto object-contain rounded-md transition-transform duration-300 ease-in-out transform hover:scale-105 cursor-pointer"
+              className="w-full h-full object-cover transition-transform duration-300 ease-in-out transform hover:scale-105"
             />
           </a>
         </div>
 
-        {/* Right Side: Item Details */}
-        <div className="w-full md:w-1/2 p-6 bg-blue-50 rounded-lg shadow-lg">
-          {/* Product Name */}
-          <h3 className="text-2xl font-bold text-blue-500 mb-4 md:text-left text-center">
-            {selectedItem.name}
-          </h3>
+        <div className="lg:w-1/2 space-y-6">
+          <h3 className="text-3xl font-bold text-gray-800">{selectedItem.name}</h3>
 
-          {/* Product Brand */}
-          <p className="text-lg text-blue-900 mb-6 md:text-left text-center flex items-center justify-center md:justify-start">
-            <span className="font-serif text-2xl italic text-blue-900 mr-2">
-              <FaTag className="inline-block mr-2" /> {selectedItem.brand}
-            </span>
-          </p>
+          <div className="flex items-center text-gray-600">
+            <FaTag className="mr-2" />
+            <span className="text-xl italic">{selectedItem.brand}</span>
+          </div>
 
-          {/* Product Category */}
-          <div className="text-md text-blue-900 mb-6 md:text-left text-center flex items-center justify-center md:justify-start">
-            <FaBoxOpen className="text-blue-900 mr-2" />
+          <div className="flex items-center text-gray-600">
+            <FaBoxOpen className="mr-2" />
             <span>{selectedItem.category}</span>
           </div>
 
-          {/* Price - Updated with Attractive Design */}
-          <div className="mb-6 text-center md:text-left">
-            <div className="font-bold text-md">
-              <span className="text-xl font-bold text-blue-900">
-                <FaDollarSign className="mr-2 inline-block text-blue-900 " />
-                {selectedItem.price.toFixed(2)}
-              </span>
-            </div>
+          <div className="flex items-center text-2xl font-bold text-gray-800">
+            <FaDollarSign className="mr-1" />
+            <span>{selectedItem.price.toFixed(2)}</span>
           </div>
 
-          {/* Stock Status */}
-          <div className="mb-6 text-center md:text-left ">
-            <span className="font-bold text-xl text-blue-900">
-              <FaBoxes className="inline-block text-blue-900 mr-2" />
-              
-              {selectedItem.quantity}
-            </span>
+          <div className="flex items-center text-gray-600">
+            <FaBoxes className="mr-2" />
+            <span>Quantity: {selectedItem.quantity}</span>
           </div>
 
-          <p className="mb-6 text-center md:text-left flex items-center justify-center md:justify-start">
+          <div className="flex items-center">
             {isInStock ? (
-              <FaCheckCircle className="text-green-600 text-1xl mr-2" />
+              <FaCheckCircle className="text-green-500 mr-2" />
             ) : (
-              <FaTimesCircle className="text-red-500 text-1xl mr-2" />
+              <FaTimesCircle className="text-red-500 mr-2" />
             )}
-            <span
-              className={`${
-                isInStock ? "text-blue-600" : "text-red-600"
-              }  text-xl`}
-            >
+            <span className={`text-lg ${isInStock ? "text-green-500" : "text-red-500"}`}>
               {isInStock ? "In Stock" : "Out of Stock"}
             </span>
-          </p>
+          </div>
 
-          {/* Attributes Section */}
-          <div className="mt-12">
-            <strong className="text-blue-900 text-lg block mb-2">Attributes:</strong>
-            <ul className="list-disc list-inside text-blue-700">
+          <div className="border-t border-gray-300 pt-6">
+            <h4 className="text-xl font-semibold text-gray-800 mb-4">Attributes</h4>
+            <ul className="grid grid-cols-2 gap-4">
               {selectedItem.attributes &&
                 Object.entries(selectedItem.attributes).map(([key, value]) => (
-                  <li key={key} className="mb-1 flex items-center">
-                    <span className="font-medium capitalize mr-2">{key.replace("_", " ")}</span>
-                    <span className="font-semibold text-blue-900">{value}</span>
+                  <li key={key} className="flex flex-col">
+                    <span className="text-sm text-gray-500 capitalize">{key.replace("_", " ")}</span>
+                    <span className="font-medium text-gray-800">{value}</span>
                   </li>
                 ))}
             </ul>
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
