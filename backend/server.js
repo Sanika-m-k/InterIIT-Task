@@ -14,7 +14,7 @@ const PORT = process.env.PORT || 5000;
 
 app.use(express.json());
 app.use(cookieParser());
-app.use(cors({ origin: ['https://sanikakgp.online','http://localhost:3000'], credentials: true }));
+app.use(cors({ origin: ['https://sanikakgp.online','http://localhost:3000','https://godown-inventory.sanikaiitkgp.com'], credentials: true }));
 
 app.use('/auth', authRoutes);  
 app.use('/api/items', itemRoutes);

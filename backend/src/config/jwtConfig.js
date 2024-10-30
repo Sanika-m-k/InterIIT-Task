@@ -1,5 +1,5 @@
 module.exports = {
-    SECRET_KEY: 'your_secret_key',
+    SECRET_KEY: 'abcd_secrete_key',
     TOKEN_EXPIRATION: '1h'  // Token validity period
   };
   
