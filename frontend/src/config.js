@@ -1,2 +1,2 @@
-const baseurl="https://sanikaiit.online"
+const baseurl="https://api.godown-inventory.sanikaiitkgp.com"
 export default baseurl;
